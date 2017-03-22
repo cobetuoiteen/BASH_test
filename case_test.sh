@@ -8,3 +8,5 @@ case "$num_in" in
 	"1") echo ban vua nhap vao so 1;;
 	*) echo so ban vua nhap khong hop le;;
 esac
+
+exit 0
