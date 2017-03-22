@@ -1,0 +1,13 @@
+Day la file vi du ve cau lenh 'cat > test_cat.txt'
+...
+con day la vi du ve cau lenh 'cat >> test_cat.txt'
+...
+Thứ sáu, 10 Tháng ba năm 2017 15:39:24 ICT
+Hello
+...
+Doan nay la vi du ve dong lenh 'cat << EOF >> test_cat.txt'
+...
+logged in date
+logged in Thứ sáu, 10 Tháng ba năm 2017 16:01:23 ICT
+
+
