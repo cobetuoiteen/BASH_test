@@ -10,4 +10,4 @@ Doan nay la vi du ve dong lenh 'cat << EOF >> test_cat.txt'
 logged in date
 logged in Thứ sáu, 10 Tháng ba năm 2017 16:01:23 ICT
 
-Hello
+
