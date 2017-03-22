@@ -3,11 +3,8 @@
 #author : Truong Huynh Tien
 #date: 2017_03_20
 
-for file in $HOME/Desktop/Hello_world_test/*
+for file in `ls -a`
 do
-	if grep -l 'main()' $file
-	then
-		more $file
-	fi
+	echo $file
 done
-exit()
+exit 0
