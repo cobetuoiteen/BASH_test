@@ -8,13 +8,20 @@ option_handle()
 		"--cd" "dir" ) #cd vao dir;;
 		"-n" ) #show number agrumnent;;
 		"-s" 'string' ) #printf **string**;;
-		* ) echo "error $1"
+		* ) echo "error $1" ; option_handle -h;;
 	esac
 exit 0	
 }
 
 queue_option()
 {
+	
+	if $* == NULL
+	then
+		//TODO
+		exit 1
+	fi
+	
 	for option in $*
 	do
 		option_handle $option
