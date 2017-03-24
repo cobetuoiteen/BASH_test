@@ -4,9 +4,17 @@ count=0
 
 for file in *
 do
-	chmod +x $file
-	echo "$file da co the run"
-	count=$(($count+1))
+	if [ -f $file ]
+	then
+		chmod +x $file
+		echo "$file da co the run"
+		count=$(($count+1))
+	fi
+	
+	if [ -d $file ]
+	then
+		echo day la thu muc, tac vu nay can xu ly them
+	fi
 done
 
 echo tong so file dc \"chmod +x\" l $count
