@@ -56,7 +56,7 @@ option_handle()
 		"--cd" ) cd_option $2 ;;
 		"-n" ) num_arg_option;;
 		"-s" ) format_string_option "$2";;
-		* ) echo error $1;;
+		* ) echo "error $1, type -h or --help for more information";;
 	esac	
 }
 
@@ -101,4 +101,4 @@ queue_option()
 exit 0
 }
 
-queue_option $*
+queue_option "$@"
