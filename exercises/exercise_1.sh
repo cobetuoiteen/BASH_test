@@ -2,6 +2,8 @@
 
 __GLOBAL_num_arg=$#
 
+
+
 debug_option()
 {
 	echo $*
@@ -49,11 +51,12 @@ format_string_option()
 option_handle()
 {
 	case $1 in
+		"-h" | "--help" ) help_option;;
 		"-d" ) dir_option;;
 		"--cd" ) cd_option $2 ;;
 		"-n" ) num_arg_option;;
 		"-s" ) format_string_option "$2";;
-		* | "-h" | "--help" ) help_option;;
+		* ) echo error $1;;
 	esac	
 }
 
@@ -63,7 +66,6 @@ queue_option()
 	if [ -z "$*" ]
 	then
 		echo "error_1: no argument"
-		echo usage:
 		help_option
 		exit 1
 	fi
@@ -81,7 +83,6 @@ queue_option()
 		if [ "${!count_arg}" = "-s" ]
 		then
 			temp=$(($count_arg+1))
-			echo "${!temp}" | sed 's/^.*$/ ***&***/g'
 			option_handle ${!count_arg} "${!temp}"
 			((count_arg++))
 		elif [ "${!count_arg}" = "--cd" ]
@@ -93,7 +94,7 @@ queue_option()
 			option_handle ${!count_arg}
 		fi
 
-		#dieu kien dung cua ovng while
+		#dieu kien dung cua vong while
 		((count_arg++))
 	done
 
