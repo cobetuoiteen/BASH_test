@@ -78,6 +78,8 @@ queue_option()
 	do
 		#arg hien tai la gi
 		#echo "$count_arg : ${!count_arg} : \$$count_arg"	
+		
+		echo
 	
 		#lam cong viec gi
 		if [ "${!count_arg}" = "-s" ]
@@ -93,6 +95,8 @@ queue_option()
 		else
 			option_handle ${!count_arg}
 		fi
+
+		echo
 
 		#dieu kien dung cua vong while
 		((count_arg++))

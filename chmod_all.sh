@@ -1,20 +1,27 @@
 #!/bin/bash
 
-count=0
+chmod_all()
+{	
+	count=0
 
-for file in *
-do
-	if [ -f $file ]
-	then
-		chmod +x $file
-		echo "$file da co the run"
-		count=$(($count+1))
-	fi
+	for file in *
+	do
+		if [ -f $file ]
+		then
+			chmod +x $file
+			echo "$file da co the run"
+			count=$(($count+1))
+		fi
+		
+		if [ -d $file ]
+		then
+			cd $file
+			chmod_all
+		fi
+			
+	done
 	
-	if [ -d $file ]
-	then
-		echo day la thu muc, tac vu nay can xu ly them
-	fi
-done
+	echo tong so file dc \"chmod +x\" l $count
+}
 
-echo tong so file dc \"chmod +x\" l $count
+chmod_all
