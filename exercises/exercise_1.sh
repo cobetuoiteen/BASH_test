@@ -1,15 +1,17 @@
 #!/bin/bash
 
+__GLOBAL_num_arg=$#
+
 debug_option()
 {
 	echo $*
 	echo $1
-	echo $#
+	echo $2
+	echo $3
 }
 
 help_option()
 {
-	echo Hello, this is help_option
 	echo 'usage : test_arugument [OPTION]'
 	echo 'OPTION list: '
 	echo " -h | --help : print usage"
@@ -26,17 +28,22 @@ dir_option()
 
 cd_option()
 {
-	cd $1
+	if [ -z $1 ]
+	then
+		cd $1
+	else
+		cd
+	fi
 }
 
 num_arg_option()
 {
-	echo num	 
+	echo $__GLOBAL_num_arg
 }
 
 format_string_option()
 {
-	printf "*** %s ***\n" $1
+	echo "*** $1 ***"
 }
 
 option_handle()
@@ -45,7 +52,7 @@ option_handle()
 		"-d" ) dir_option;;
 		"--cd" ) cd_option $2 ;;
 		"-n" ) num_arg_option;;
-		"-s" ) format_string_option $2;;
+		"-s" ) format_string_option "$2";;
 		* | "-h" | "--help" ) help_option;;
 	esac	
 }
@@ -67,7 +74,6 @@ queue_option()
 
 	while [ "$count_arg" -le $# ]
 	do
-		echo
 		#arg hien tai la gi
 		#echo "$count_arg : ${!count_arg} : \$$count_arg"	
 	
@@ -75,19 +81,17 @@ queue_option()
 		if [ "${!count_arg}" = "-s" ]
 		then
 			temp=$(($count_arg+1))
-			echo "${!temp}"
-			option_handle ${!count_arg} ${!temp} 
+			echo "${!temp}" | sed 's/^.*$/ ***&***/g'
+			option_handle ${!count_arg} "${!temp}"
 			((count_arg++))
 		elif [ "${!count_arg}" = "--cd" ]
 		then
 			temp=$((count_arg+1))	
-			option_handle ${!count_arg} ${!temp}
+			option_handle ${!count_arg} "${!temp}"
 			((count_arg++))	
 		else
-			option_handle $count_arg		
+			option_handle ${!count_arg}
 		fi
-
-		echo
 
 		#dieu kien dung cua ovng while
 		((count_arg++))
