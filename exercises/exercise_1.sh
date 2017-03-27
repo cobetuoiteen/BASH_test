@@ -3,6 +3,11 @@
 __GLOBAL_num_arg=$#
 
 
+arg_handle()
+{
+	for arg in "$#"
+	do
+}
 
 debug_option()
 {
@@ -30,12 +35,7 @@ dir_option()
 
 cd_option()
 {
-	if [ -z $1 ]
-	then
-		cd $1
-	else
-		cd
-	fi
+		cd > echo $1
 }
 
 num_arg_option()
@@ -45,7 +45,7 @@ num_arg_option()
 
 format_string_option()
 {
-	echo "*** $1 ***"
+	echo -e "\033[32m *** $1 *** \033[0m"
 }
 
 option_handle()
