@@ -3,11 +3,11 @@
 __GLOBAL_num_arg=$#
 
 
-arg_handle()
-{
-	for arg in "$#"
-	do
-}
+#arg_handle()
+#{
+#	for arg in "$#"
+#	do
+#}
 
 debug_option()
 {

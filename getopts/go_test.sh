@@ -7,7 +7,8 @@
 # "d" option : show current dir.
 
 # read the options
-TEMP=`getopt -o hnds: --long \help,\cd: -- "$@"`
+TEMP=`getopt -o hnds:p: --long \help,\cd:,\printf: -- "$@"`
+
 eval set -- "$TEMP"
 
 #echo $*
@@ -18,21 +19,33 @@ eval set -- "$TEMP"
 while true 
 do
     case "$1" in
-	-h|--help) echo dosomething in help; shift;;
-        --cd)
-            case "$2" in
-                "") echo cd ;shift 2;;
-                *) echo cd "$2"; shift 2;;
-            esac ;;
-        -n) echo $#; shift;;
-        -s)
-            case "$2" in
-                "") echo s ;shift 2;;
-                *) echo s with string ; shift 2;;
-            esac ;;
-	--) shift ; break;;
-	-d) echo do something in -d; shift;;
+	-h | --help ) echo dosomething in help; shift;;
 
-        *) echo "Internal error! with $1" ; exit 1 ;;
+        --cd )
+            case "$2" in
+                "" ) echo cd ;shift 2;;
+                * ) echo cd "$2"; shift 2;;
+            esac ;;
+
+        -n ) echo $#; shift;;
+
+        -s )
+            case "$2" in
+                "" ) echo s ;shift 2;;
+                * ) echo s with string ; shift 2;;
+            esac ;;
+
+	-- ) shift ; break;;
+	
+	-p | --printf )
+	 	case $2 in
+			"" ) for a in $2; do echo $a; done; shift 2;;
+			* ) for a in $2; do echo $a; done; shift 2;;
+	    	esac
+		;;
+	
+	-d ) echo do something in -d; shift;;
+
+        * ) echo "Internal error! with $1" ; exit 1 ;;
     esac
 done
