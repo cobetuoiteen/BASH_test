@@ -39,7 +39,7 @@ do
 	
 	-p | --printf )
 	 	case $2 in
-			"" ) for a in $2; do echo $a; done; shift 2;;
+			"" ) echo ""; shift 2;;
 			* ) for a in $2; do echo $a; done; shift 2;;
 	    	esac
 		;;
