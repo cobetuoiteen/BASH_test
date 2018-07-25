@@ -1,0 +1,4 @@
+for i in "$@"; do
+    echo "Option is " $i
+    
+done

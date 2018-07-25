@@ -1,0 +1,13 @@
+#!/usr/bin/expect
+
+set timeout 10
+set password [lindex $argv 0]
+spawn "./bash.sh"
+
+expect "your name ?" { send "Tien handsome\r"}
+expect "Number 1:" { send "16\r" }
+expect "Number 2:" { send "15\r" }
+expect "password" { send "${password}\r" }
+expect "Sorry," { send "${password}\r" }
+
+interact

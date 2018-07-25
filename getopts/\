@@ -1,0 +1,45 @@
+#logger()
+#{
+#    while getopts "st:n:a:" opt; do
+#       case $opt in
+#          s) flag="true";;
+#          t|n|a) echo "Do nothing";;
+#       esac
+#    done
+#
+#    shift `expr $OPTIND - 1`
+#    if [ $flag = "true" ]; then
+#        echo "Message is " $@
+#    fi
+#}
+
+
+logger() {
+    flag="false"
+    echo "*************************************"
+    LOGGER=`which logger`
+    echo "$@" | grep "\-s " >/dev/null && echo "ERROR ($(basename "$0")): invalid parameter ${}" >&2
+    $LOGGER "$@" 2> /dev/null
+
+    echo "-------------------"
+    echo $OPTIND
+    echo $opt
+    echo $OPTARG
+    echo $@
+    echo "-------------------"
+
+    while getopts "sp:t:" opt; do
+        case $opt in
+           s) flag="true";;
+        esac
+    done
+    shift `expr $OPTIND - 1`
+    if [ "$flag" = "true" ]; then
+        echo "ERROR ($(basename "$0")): invalid parameter $@" >&2
+    fi
+    OPTIND=1
+    echo "*************************************"
+}
+
+
+logger $@

@@ -8,18 +8,18 @@
 
 # read the options
 TEMP=`getopt -o hnds:p: --long \help,\cd:,\printf: -- "$@"`
-
+echo $TEMP
 eval set -- "$TEMP"
-
 #echo $*
-#echo $1
+
+echo $1
 #echo $2
 
 # extract options and their arguments into variables.
 while true 
 do
     case "$1" in
-	-h | --help ) echo dosomething in help; shift;;
+	-h | --help ) echo "help"; shift;;
 
         --cd )
             case "$2" in
@@ -44,7 +44,7 @@ do
 	    	esac
 		;;
 	
-	-d ) echo do something in -d; shift;;
+	-d ) echo `pwd`; shift;;
 
         * ) echo "Internal error! with $1" ; exit 1 ;;
     esac
